@@ -43,7 +43,7 @@ func ExcludeOps(localOpType, remoteOpType OpType) bool {
  *				argsNum is the expected number of arguments.
  *	@Post: 		Parses and validates command-line arguments.
  *
- *	@Returns:	PID (int), endpoints_file (string), shared_RW_file (string), logs_file (string), and a channel for OS signals.
+ *	@Returns:	PID (int), endpointsFile (string), sharedRWFile (string), logsFile (string), and a channel for OS signals.
  */
 func ParseAndCheckArgs(args []string, execFormat string, argsNum int) (int, string, string, string, chan os.Signal) {
 	var PID int
@@ -58,11 +58,11 @@ func ParseAndCheckArgs(args []string, execFormat string, argsNum int) (int, stri
 	signal.Notify(endSigChan, syscall.SIGINT, syscall.SIGTERM)
 	log.SetFlags(log.Lshortfile | log.Lmicroseconds)
 
-	endpoints_file := args[2]
-	shared_RW_file := args[3]
-	logs_file := fmt.Sprintf("logs/logs%v", PID)
+	endpointsFile := args[2]
+	sharedRWFile := args[3]
+	logsFile := fmt.Sprintf("logs/logs%v", PID)
 
-	return PID, endpoints_file, shared_RW_file, logs_file, endSigChan
+	return PID, endpointsFile, sharedRWFile, logsFile, endSigChan
 }
 
 func GetRandomSleepDuration(minDelayMs int, maxDelayMs int) time.Duration {
