@@ -23,10 +23,10 @@ import (
  *
  *	@Returns:	A string containing the content of the file, or an empty string if the file couldn't be read.
  */
-func LeerFichero(shared_RW_file string, PID int) string {
-	file, err := os.Open(shared_RW_file)
+func LeerFichero(sharedRWFile string, PID int) string {
+	file, err := os.Open(sharedRWFile)
 	if err != nil {
-		utils.LogWithColor(utils.Red, fmt.Sprintf("[PID %v] File \"%s\" not created yet, could not read anything\n", PID, shared_RW_file))
+		utils.LogWithColor(utils.Red, fmt.Sprintf("[PID %v] File \"%s\" not created yet, could not read anything\n", PID, sharedRWFile))
 		return ""
 	}
 	defer file.Close()
@@ -51,7 +51,7 @@ func LeerFichero(shared_RW_file string, PID int) string {
 func main() {
 	execFormat := "go run lector.go <line_number> <endpoints_file> <shared_RW_file_prefix>"
 	PID, endpoints_file, shared_RW_file_pref, logs_file, endSigChan := utils.ParseAndCheckArgs(os.Args, execFormat, 4)
-	shared_RW_file := shared_RW_file_pref + strconv.Itoa(PID) + ".txt"
+	sharedRWFile := shared_RW_file_pref + strconv.Itoa(PID) + ".txt"
 	reqChan := make(chan Vra.VRequest)
 
 	// Initialize the Ricart-Agrawala object
@@ -72,12 +72,12 @@ func main() {
 		ra.PreProtocol()
 
 		// Execute the read operation
-		data := LeerFichero(shared_RW_file, PID)
+		data := LeerFichero(sharedRWFile, PID)
 
 		// End access to the critical section
 		ra.PostProtocol()
 
-		utils.LogWithColor(utils.BrCyan, fmt.Sprintf("\n[PID %v] Content read from file \"%s\":", PID, shared_RW_file))
+		utils.LogWithColor(utils.BrCyan, fmt.Sprintf("\n[PID %v] Content read from file \"%s\":", PID, sharedRWFile))
 		utils.LogWithColor(utils.BrCyan, string(data)+"\n")
 	}
 

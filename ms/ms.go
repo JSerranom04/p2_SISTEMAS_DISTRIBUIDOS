@@ -67,7 +67,11 @@ func (ms *MessageSystem) Send(pid int, msg []byte /*Message*/) {
 		time.Sleep(delay)
 	}
 	checkError(err)
-	conn.Write(msg)
+
+	_, err = conn.Write(msg)
+	if err != nil {
+        log.Fatalf("Error sending message to process %d: %v", pid, err)
+    }
 	conn.Close()
 }
 

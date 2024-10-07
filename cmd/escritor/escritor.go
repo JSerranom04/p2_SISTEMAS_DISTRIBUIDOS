@@ -24,20 +24,26 @@ import (
  *
  *	@Returns:	None.
  */
-func EscribirFichero(shared_RW_file string, fragmento string, PID int) {
+func EscribirFichero(sharedRWFile string, fragmento string, PID int) {
 	splitFrag := strings.Split(fragmento, " ")
-	f, err := os.OpenFile(shared_RW_file, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
+	f, err := os.OpenFile(sharedRWFile, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 	if err != nil {
 		log.Fatalf("[PID %v] Fatal error while opening shared RW file to write: %v\n", PID, err)
 	}
 	defer f.Close()
 
 	for _, word := range splitFrag {
-		f.WriteString(word + " ")
+		_, err := f.WriteString(word + " ")
+		if err != nil {
+			log.Fatalf("[PID %v] Fatal error while writing to shared RW file: %v\n", PID, err)
+        }
 		time.Sleep(utils.GetRandomSleepDuration(2, 20))
 	}
 
-	f.WriteString("\n")
+	_, err = f.WriteString("\n")
+	if err != nil {
+		log.Fatalf("[PID %v] Fatal error while writing to shared RW file: %v\n", PID, err)
+	}
 }
 
 /*
