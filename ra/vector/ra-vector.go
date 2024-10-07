@@ -88,8 +88,8 @@ func (ra *VRASharedDB) PreProtocol() {
 	ra.ReqCS = true
 	ra.updateSendClock()
 	ra.SendVClock[ra.ms.Me-1]++
-	ra.Mutex.Unlock()
 	ra.OutRepCnt = len(ra.ms.Peers) - 1
+	ra.Mutex.Unlock()
 
 	// Send requests to all other processes
 	for pid := 1; pid <= len(ra.ms.Peers); pid++ {
@@ -120,7 +120,10 @@ func (ra *VRASharedDB) sendClockedMessage(messagePayload ms.Message, loggerMsg s
 	ra.ms.Send(pid, vClockMessage)
 }
 
+// updateSendClock ensures that SendVClock reflects the maximum values from RecVClock
 func (ra *VRASharedDB) updateSendClock() {
+	ra.Mutex.Lock()
+	defer ra.Mutex.Unlock()
 	for i := range ra.SendVClock {
 		// KEY, NEW: if we just copy ra.RecVClock[i] to ra.SendVClock[i],
 		// we'll end up omitting our own process component (which might
@@ -136,6 +139,8 @@ func (ra *VRASharedDB) updateSendClock() {
  *	@Returns:	None.
  */
 func (ra *VRASharedDB) updateRecVClock(receivedVClock []int) {
+	ra.Mutex.Lock()
+	defer ra.Mutex.Unlock()
 	for i := range ra.RecVClock {
 		ra.RecVClock[i] = max(ra.RecVClock[i], receivedVClock[i])
 	}
@@ -158,7 +163,7 @@ func (ra *VRASharedDB) hasEarlierOrEqualSendVClock(receivedVClock []int) (bool, 
 			weHaveLaterClock = true
 		}
 	}
-	comparableAndNotEqual := !(weHaveEarlierClock == weHaveLaterClock)
+	comparableAndNotEqual := (weHaveEarlierClock != weHaveLaterClock)
 	return comparableAndNotEqual, comparableAndNotEqual && weHaveEarlierClock
 }
 
@@ -174,10 +179,10 @@ func (ra *VRASharedDB) HandleRequest() {
 		ra.Mutex.Lock()
 		ra.updateRecVClock(req.VClock)
 		comparableAndNotEqual, weHaveEarlierClock := ra.hasEarlierOrEqualSendVClock(req.VClock)
-		defer_it := ra.ReqCS && (weHaveEarlierClock ||
+		deferIt := ra.ReqCS && (weHaveEarlierClock ||
 			(!comparableAndNotEqual && req.Pid > ra.ms.Me)) &&
 			utils.ExcludeOps(ra.OpType, req.OpType)
-		if defer_it {
+		if deferIt {
 			ra.RepDefd[req.Pid-1] = true
 		} else {
 			loggerMsg := fmt.Sprintf("[PID %v] Sending immediate CS permission to process %v", ra.ms.Me, req.Pid)
@@ -238,6 +243,7 @@ func (ra *VRASharedDB) ReceiveAndDecodeMessage() {
 func (ra *VRASharedDB) PostProtocol() {
 	utils.LogWithColor(utils.BgOrange, fmt.Sprintf("[PID %v] About to exit critical section (op: %v)...", ra.ms.Me, ra.OpType))
 	ra.Mutex.Lock()
+	defer ra.Mutex.Unlock()
 	ra.ReqCS = false
 	for pid := range ra.RepDefd {
 		if ra.RepDefd[pid] {
@@ -247,7 +253,6 @@ func (ra *VRASharedDB) PostProtocol() {
 			ra.RepDefd[pid] = false
 		}
 	}
-	ra.Mutex.Unlock()
 }
 
 /*

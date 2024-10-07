@@ -36,7 +36,7 @@ func EscribirFichero(sharedRWFile string, fragmento string, PID int) {
 		_, err := f.WriteString(word + " ")
 		if err != nil {
 			log.Fatalf("[PID %v] Fatal error while writing to shared RW file: %v\n", PID, err)
-        }
+		}
 		time.Sleep(utils.GetRandomSleepDuration(2, 20))
 	}
 
