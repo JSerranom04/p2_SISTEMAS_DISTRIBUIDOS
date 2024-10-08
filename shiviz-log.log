@@ -1,0 +1,616 @@
+(?<host>\S*) (?<clock>{.*})\n(?<event>.*)
+
+SRA-1 {"SRA-1":1}
+Initialization Complete
+SRA-1 {"SRA-1":2}
+INFO [PID 1] Sending CS request to process 2, payload: {1 1 0}
+SRA-1 {"SRA-1":3, "SRA-3":2}
+INFO [PID 1] Received ra_scalar.Request: {1 3 0}, my_send_clock: 1
+SRA-1 {"SRA-1":4, "SRA-3":2}
+INFO [PID 1] Sending immediate CS permission to process 3
+SRA-1 {"SRA-1":5, "SRA-2":2, "SRA-3":2}
+INFO [PID 1] Received ra_scalar.Request: {1 2 0}, my_send_clock: 1
+SRA-1 {"SRA-1":6, "SRA-2":2, "SRA-3":2}
+INFO [PID 1] Sending immediate CS permission to process 2
+SRA-1 {"SRA-1":7, "SRA-2":8, "SRA-3":6}
+INFO [PID 1] Received ra_scalar.Request: {2 2 0}, my_send_clock: 1
+SRA-1 {"SRA-1":8, "SRA-2":8, "SRA-3":6}
+INFO [PID 1] Sending immediate CS permission to process 2
+SRA-1 {"SRA-1":9, "SRA-2":12, "SRA-3":9}
+INFO [PID 1] Received ra_scalar.Request: {2 2 0}, my_send_clock: 1
+SRA-1 {"SRA-1":10, "SRA-2":12, "SRA-3":9}
+INFO [PID 1] Sending immediate CS permission to process 2
+SRA-1 {"SRA-1":11, "SRA-2":16, "SRA-3":11}
+INFO [PID 1] Received ra_scalar.Request: {2 2 0}, my_send_clock: 1
+SRA-1 {"SRA-1":12, "SRA-2":16, "SRA-3":11}
+INFO [PID 1] Sending immediate CS permission to process 2
+SRA-1 {"SRA-1":13, "SRA-2":20, "SRA-3":13}
+INFO [PID 1] Received ra_scalar.Request: {2 2 0}, my_send_clock: 1
+SRA-1 {"SRA-1":14, "SRA-2":20, "SRA-3":13}
+INFO [PID 1] Sending immediate CS permission to process 2
+SRA-1 {"SRA-1":15, "SRA-2":24, "SRA-3":15}
+INFO [PID 1] Received ra_scalar.Request: {2 2 0}, my_send_clock: 1
+SRA-1 {"SRA-1":16, "SRA-2":24, "SRA-3":15}
+INFO [PID 1] Sending immediate CS permission to process 2
+SRA-1 {"SRA-1":17, "SRA-2":25, "SRA-3":17}
+INFO [PID 1] Received ra_scalar.Request: {3 3 0}, my_send_clock: 1
+SRA-1 {"SRA-1":18, "SRA-2":25, "SRA-3":17}
+INFO [PID 1] Sending immediate CS permission to process 3
+SRA-1 {"SRA-1":19, "SRA-2":30, "SRA-3":19}
+INFO [PID 1] Received ra_scalar.Request: {4 2 0}, my_send_clock: 1
+SRA-1 {"SRA-1":20, "SRA-2":30, "SRA-3":19}
+INFO [PID 1] Sending immediate CS permission to process 2
+SRA-1 {"SRA-1":21, "SRA-2":34, "SRA-3":23}
+INFO [PID 1] Received ra_scalar.Request: {4 2 0}, my_send_clock: 1
+SRA-1 {"SRA-1":22, "SRA-2":34, "SRA-3":23}
+INFO [PID 1] Sending immediate CS permission to process 2
+SRA-1 {"SRA-1":23, "SRA-2":35, "SRA-3":26}
+INFO [PID 1] Received ra_scalar.Request: {5 3 0}, my_send_clock: 1
+SRA-1 {"SRA-1":24, "SRA-2":35, "SRA-3":26}
+INFO [PID 1] Sending immediate CS permission to process 3
+SRA-1 {"SRA-1":25, "SRA-2":39, "SRA-3":30}
+INFO [PID 1] Received ra_scalar.Request: {5 3 0}, my_send_clock: 1
+SRA-1 {"SRA-1":26, "SRA-2":39, "SRA-3":30}
+INFO [PID 1] Sending immediate CS permission to process 3
+SRA-1 {"SRA-1":27, "SRA-2":39, "SRA-3":30}
+INFO [PID 1] Sending CS request to process 3, payload: {1 1 0}
+SRA-1 {"SRA-1":28, "SRA-2":43, "SRA-3":31}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 1
+SRA-1 {"SRA-1":29, "SRA-2":43, "SRA-3":35}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 1
+SRA-1 {"SRA-1":30, "SRA-2":43, "SRA-3":36}
+INFO [PID 1] Received ra_scalar.Request: {5 3 0}, my_send_clock: 1
+SRA-1 {"SRA-1":31, "SRA-2":43, "SRA-3":36}
+INFO [PID 1] Sending immediate CS permission to process 3
+SRA-1 {"SRA-1":32, "SRA-2":43, "SRA-3":36}
+INFO [PID 1] Sending CS request to process 2, payload: {6 1 0}
+SRA-1 {"SRA-1":33, "SRA-2":43, "SRA-3":36}
+INFO [PID 1] Sending CS request to process 3, payload: {6 1 0}
+SRA-1 {"SRA-1":34, "SRA-2":47, "SRA-3":37}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 6
+SRA-1 {"SRA-1":35, "SRA-2":47, "SRA-3":41}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 6
+SRA-1 {"SRA-1":36, "SRA-2":47, "SRA-3":42}
+INFO [PID 1] Received ra_scalar.Request: {7 3 0}, my_send_clock: 6
+SRA-1 {"SRA-1":37, "SRA-2":47, "SRA-3":42}
+INFO [PID 1] Sending immediate CS permission to process 3
+SRA-1 {"SRA-1":38, "SRA-2":47, "SRA-3":42}
+INFO [PID 1] Sending CS request to process 2, payload: {8 1 0}
+SRA-1 {"SRA-1":39, "SRA-2":47, "SRA-3":42}
+INFO [PID 1] Sending CS request to process 3, payload: {8 1 0}
+SRA-1 {"SRA-1":40, "SRA-2":51, "SRA-3":43}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 8
+SRA-1 {"SRA-1":41, "SRA-2":51, "SRA-3":47}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 8
+SRA-1 {"SRA-1":42, "SRA-2":51, "SRA-3":48}
+INFO [PID 1] Received ra_scalar.Request: {9 3 0}, my_send_clock: 8
+SRA-1 {"SRA-1":43, "SRA-2":51, "SRA-3":48}
+INFO [PID 1] Sending immediate CS permission to process 3
+SRA-1 {"SRA-1":44, "SRA-2":51, "SRA-3":48}
+INFO [PID 1] Sending CS request to process 2, payload: {10 1 0}
+SRA-1 {"SRA-1":45, "SRA-2":51, "SRA-3":48}
+INFO [PID 1] Sending CS request to process 3, payload: {10 1 0}
+SRA-1 {"SRA-1":46, "SRA-2":55, "SRA-3":49}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 10
+SRA-1 {"SRA-1":47, "SRA-2":55, "SRA-3":53}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 10
+SRA-1 {"SRA-1":48, "SRA-2":55, "SRA-3":54}
+INFO [PID 1] Received ra_scalar.Request: {11 3 0}, my_send_clock: 10
+SRA-1 {"SRA-1":49, "SRA-2":55, "SRA-3":54}
+INFO [PID 1] Sending immediate CS permission to process 3
+SRA-1 {"SRA-1":50, "SRA-2":55, "SRA-3":54}
+INFO [PID 1] Sending CS request to process 2, payload: {12 1 0}
+SRA-1 {"SRA-1":51, "SRA-2":55, "SRA-3":54}
+INFO [PID 1] Sending CS request to process 3, payload: {12 1 0}
+SRA-1 {"SRA-1":52, "SRA-2":59, "SRA-3":55}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 12
+SRA-1 {"SRA-1":53, "SRA-2":59, "SRA-3":59}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 12
+SRA-1 {"SRA-1":54, "SRA-2":59, "SRA-3":60}
+INFO [PID 1] Received ra_scalar.Request: {13 3 0}, my_send_clock: 12
+SRA-1 {"SRA-1":55, "SRA-2":59, "SRA-3":60}
+INFO [PID 1] Sending immediate CS permission to process 3
+SRA-1 {"SRA-1":56, "SRA-2":59, "SRA-3":60}
+INFO [PID 1] Sending CS request to process 2, payload: {14 1 0}
+SRA-1 {"SRA-1":57, "SRA-2":59, "SRA-3":60}
+INFO [PID 1] Sending CS request to process 3, payload: {14 1 0}
+SRA-1 {"SRA-1":58, "SRA-2":63, "SRA-3":61}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 14
+SRA-1 {"SRA-1":59, "SRA-2":63, "SRA-3":65}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 14
+SRA-1 {"SRA-1":60, "SRA-2":63, "SRA-3":66}
+INFO [PID 1] Received ra_scalar.Request: {15 3 0}, my_send_clock: 14
+SRA-1 {"SRA-1":61, "SRA-2":63, "SRA-3":66}
+INFO [PID 1] Sending immediate CS permission to process 3
+SRA-1 {"SRA-1":62, "SRA-2":63, "SRA-3":66}
+INFO [PID 1] Sending CS request to process 2, payload: {16 1 0}
+SRA-1 {"SRA-1":63, "SRA-2":63, "SRA-3":66}
+INFO [PID 1] Sending CS request to process 3, payload: {16 1 0}
+SRA-1 {"SRA-1":64, "SRA-2":67, "SRA-3":67}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 16
+SRA-1 {"SRA-1":65, "SRA-2":67, "SRA-3":71}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 16
+SRA-1 {"SRA-1":66, "SRA-2":67, "SRA-3":72}
+INFO [PID 1] Received ra_scalar.Request: {17 3 0}, my_send_clock: 16
+SRA-1 {"SRA-1":67, "SRA-2":67, "SRA-3":72}
+INFO [PID 1] Sending immediate CS permission to process 3
+SRA-1 {"SRA-1":68, "SRA-2":69, "SRA-3":76}
+INFO [PID 1] Received ra_scalar.Request: {17 3 0}, my_send_clock: 16
+SRA-1 {"SRA-1":69, "SRA-2":69, "SRA-3":76}
+INFO [PID 1] Sending immediate CS permission to process 3
+SRA-1 {"SRA-1":70, "SRA-2":69, "SRA-3":76}
+INFO [PID 1] Sending CS request to process 2, payload: {18 1 0}
+SRA-1 {"SRA-1":71, "SRA-2":69, "SRA-3":76}
+INFO [PID 1] Sending CS request to process 3, payload: {18 1 0}
+SRA-1 {"SRA-1":72, "SRA-2":73, "SRA-3":77}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 18
+SRA-1 {"SRA-1":73, "SRA-2":73, "SRA-3":81}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 18
+SRA-1 {"SRA-1":74, "SRA-2":73, "SRA-3":82}
+INFO [PID 1] Received ra_scalar.Request: {19 3 0}, my_send_clock: 18
+SRA-1 {"SRA-1":75, "SRA-2":73, "SRA-3":82}
+INFO [PID 1] Sending immediate CS permission to process 3
+SRA-1 {"SRA-1":76, "SRA-2":73, "SRA-3":82}
+INFO [PID 1] Sending CS request to process 2, payload: {20 1 0}
+SRA-1 {"SRA-1":77, "SRA-2":73, "SRA-3":82}
+INFO [PID 1] Sending CS request to process 3, payload: {20 1 0}
+SRA-1 {"SRA-1":78, "SRA-2":77, "SRA-3":83}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 20
+SRA-1 {"SRA-1":79, "SRA-2":77, "SRA-3":87}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 20
+SRA-1 {"SRA-1":80, "SRA-2":77, "SRA-3":88}
+INFO [PID 1] Received ra_scalar.Request: {21 3 0}, my_send_clock: 20
+SRA-1 {"SRA-1":81, "SRA-2":77, "SRA-3":88}
+INFO [PID 1] Sending immediate CS permission to process 3
+SRA-1 {"SRA-1":82, "SRA-2":77, "SRA-3":88}
+INFO [PID 1] Sending CS request to process 2, payload: {22 1 0}
+SRA-1 {"SRA-1":83, "SRA-2":77, "SRA-3":88}
+INFO [PID 1] Sending CS request to process 3, payload: {22 1 0}
+SRA-1 {"SRA-1":84, "SRA-2":81, "SRA-3":89}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 22
+SRA-1 {"SRA-1":85, "SRA-2":81, "SRA-3":93}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 22
+SRA-1 {"SRA-1":86, "SRA-2":81, "SRA-3":94}
+INFO [PID 1] Received ra_scalar.Request: {23 3 0}, my_send_clock: 22
+SRA-1 {"SRA-1":87, "SRA-2":81, "SRA-3":94}
+INFO [PID 1] Sending immediate CS permission to process 3
+SRA-1 {"SRA-1":88, "SRA-2":81, "SRA-3":94}
+INFO [PID 1] Sending CS request to process 2, payload: {24 1 0}
+SRA-1 {"SRA-1":89, "SRA-2":81, "SRA-3":94}
+INFO [PID 1] Sending CS request to process 3, payload: {24 1 0}
+SRA-1 {"SRA-1":90, "SRA-2":85, "SRA-3":95}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 24
+SRA-1 {"SRA-1":91, "SRA-2":85, "SRA-3":99}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 24
+SRA-1 {"SRA-1":92, "SRA-2":85, "SRA-3":99}
+INFO [PID 1] Sending CS request to process 2, payload: {24 1 0}
+SRA-1 {"SRA-1":93, "SRA-2":85, "SRA-3":99}
+INFO [PID 1] Sending CS request to process 3, payload: {24 1 0}
+SRA-1 {"SRA-1":94, "SRA-2":87, "SRA-3":99}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 24
+SRA-1 {"SRA-1":95, "SRA-2":87, "SRA-3":101}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 24
+SRA-1 {"SRA-1":96, "SRA-2":87, "SRA-3":101}
+INFO [PID 1] Sending CS request to process 2, payload: {24 1 0}
+SRA-1 {"SRA-1":97, "SRA-2":87, "SRA-3":101}
+INFO [PID 1] Sending CS request to process 3, payload: {24 1 0}
+SRA-1 {"SRA-1":98, "SRA-2":89, "SRA-3":101}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 24
+SRA-1 {"SRA-1":99, "SRA-2":89, "SRA-3":103}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 24
+SRA-1 {"SRA-1":100, "SRA-2":89, "SRA-3":103}
+INFO [PID 1] Sending CS request to process 2, payload: {24 1 0}
+SRA-1 {"SRA-1":101, "SRA-2":89, "SRA-3":103}
+INFO [PID 1] Sending CS request to process 3, payload: {24 1 0}
+SRA-1 {"SRA-1":102, "SRA-2":91, "SRA-3":103}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 24
+SRA-1 {"SRA-1":103, "SRA-2":91, "SRA-3":105}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 24
+SRA-1 {"SRA-1":104, "SRA-2":91, "SRA-3":105}
+INFO [PID 1] Sending CS request to process 2, payload: {24 1 0}
+SRA-1 {"SRA-1":105, "SRA-2":91, "SRA-3":105}
+INFO [PID 1] Sending CS request to process 3, payload: {24 1 0}
+SRA-1 {"SRA-1":106, "SRA-2":93, "SRA-3":105}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 24
+SRA-1 {"SRA-1":107, "SRA-2":93, "SRA-3":107}
+INFO [PID 1] Received ra_scalar.Reply: {}, my_send_clock: 24
+SRA-2 {"SRA-2":1}
+Initialization Complete
+SRA-2 {"SRA-2":2}
+INFO [PID 2] Sending CS request to process 1, payload: {1 2 0}
+SRA-2 {"SRA-2":3}
+INFO [PID 2] Sending CS request to process 3, payload: {1 2 0}
+SRA-2 {"SRA-1":6, "SRA-2":4, "SRA-3":2}
+INFO [PID 2] Received ra_scalar.Reply: {}, my_send_clock: 1
+SRA-2 {"SRA-1":6, "SRA-2":5, "SRA-3":3}
+INFO [PID 2] Received ra_scalar.Request: {1 3 0}, my_send_clock: 1
+SRA-2 {"SRA-1":6, "SRA-2":6, "SRA-3":3}
+INFO [PID 2] Sending immediate CS permission to process 3
+SRA-2 {"SRA-1":6, "SRA-2":7, "SRA-3":6}
+INFO [PID 2] Received ra_scalar.Reply: {}, my_send_clock: 1
+SRA-2 {"SRA-1":6, "SRA-2":8, "SRA-3":6}
+INFO [PID 2] Sending CS request to process 1, payload: {2 2 0}
+SRA-2 {"SRA-1":6, "SRA-2":9, "SRA-3":6}
+INFO [PID 2] Sending CS request to process 3, payload: {2 2 0}
+SRA-2 {"SRA-1":8, "SRA-2":10, "SRA-3":6}
+INFO [PID 2] Received ra_scalar.Reply: {}, my_send_clock: 2
+SRA-2 {"SRA-1":8, "SRA-2":11, "SRA-3":9}
+INFO [PID 2] Received ra_scalar.Reply: {}, my_send_clock: 2
+SRA-2 {"SRA-1":8, "SRA-2":12, "SRA-3":9}
+INFO [PID 2] Sending CS request to process 1, payload: {2 2 0}
+SRA-2 {"SRA-1":8, "SRA-2":13, "SRA-3":9}
+INFO [PID 2] Sending CS request to process 3, payload: {2 2 0}
+SRA-2 {"SRA-1":10, "SRA-2":14, "SRA-3":9}
+INFO [PID 2] Received ra_scalar.Reply: {}, my_send_clock: 2
+SRA-2 {"SRA-1":10, "SRA-2":15, "SRA-3":11}
+INFO [PID 2] Received ra_scalar.Reply: {}, my_send_clock: 2
+SRA-2 {"SRA-1":10, "SRA-2":16, "SRA-3":11}
+INFO [PID 2] Sending CS request to process 1, payload: {2 2 0}
+SRA-2 {"SRA-1":10, "SRA-2":17, "SRA-3":11}
+INFO [PID 2] Sending CS request to process 3, payload: {2 2 0}
+SRA-2 {"SRA-1":12, "SRA-2":18, "SRA-3":11}
+INFO [PID 2] Received ra_scalar.Reply: {}, my_send_clock: 2
+SRA-2 {"SRA-1":12, "SRA-2":19, "SRA-3":13}
+INFO [PID 2] Received ra_scalar.Reply: {}, my_send_clock: 2
+SRA-2 {"SRA-1":12, "SRA-2":20, "SRA-3":13}
+INFO [PID 2] Sending CS request to process 1, payload: {2 2 0}
+SRA-2 {"SRA-1":12, "SRA-2":21, "SRA-3":13}
+INFO [PID 2] Sending CS request to process 3, payload: {2 2 0}
+SRA-2 {"SRA-1":14, "SRA-2":22, "SRA-3":13}
+INFO [PID 2] Received ra_scalar.Reply: {}, my_send_clock: 2
+SRA-2 {"SRA-1":14, "SRA-2":23, "SRA-3":15}
+INFO [PID 2] Received ra_scalar.Reply: {}, my_send_clock: 2
+SRA-2 {"SRA-1":14, "SRA-2":24, "SRA-3":15}
+INFO [PID 2] Sending CS request to process 1, payload: {2 2 0}
+SRA-2 {"SRA-1":14, "SRA-2":25, "SRA-3":15}
+INFO [PID 2] Sending CS request to process 3, payload: {2 2 0}
+SRA-2 {"SRA-1":16, "SRA-2":26, "SRA-3":15}
+INFO [PID 2] Received ra_scalar.Reply: {}, my_send_clock: 2
+SRA-2 {"SRA-1":16, "SRA-2":27, "SRA-3":18}
+INFO [PID 2] Received ra_scalar.Reply: {}, my_send_clock: 2
+SRA-2 {"SRA-1":16, "SRA-2":28, "SRA-3":19}
+INFO [PID 2] Received ra_scalar.Request: {3 3 0}, my_send_clock: 2
+SRA-2 {"SRA-1":16, "SRA-2":29, "SRA-3":19}
+INFO [PID 2] Sending immediate CS permission to process 3
+SRA-2 {"SRA-1":16, "SRA-2":30, "SRA-3":19}
+INFO [PID 2] Sending CS request to process 1, payload: {4 2 0}
+SRA-2 {"SRA-1":16, "SRA-2":31, "SRA-3":19}
+INFO [PID 2] Sending CS request to process 3, payload: {4 2 0}
+SRA-2 {"SRA-1":20, "SRA-2":32, "SRA-3":19}
+INFO [PID 2] Received ra_scalar.Reply: {}, my_send_clock: 4
+SRA-2 {"SRA-1":20, "SRA-2":33, "SRA-3":23}
+INFO [PID 2] Received ra_scalar.Reply: {}, my_send_clock: 4
+SRA-2 {"SRA-1":20, "SRA-2":34, "SRA-3":23}
+INFO [PID 2] Sending CS request to process 1, payload: {4 2 0}
+SRA-2 {"SRA-1":20, "SRA-2":35, "SRA-3":23}
+INFO [PID 2] Sending CS request to process 3, payload: {4 2 0}
+SRA-2 {"SRA-1":22, "SRA-2":36, "SRA-3":23}
+INFO [PID 2] Received ra_scalar.Reply: {}, my_send_clock: 4
+SRA-2 {"SRA-1":22, "SRA-2":37, "SRA-3":25}
+INFO [PID 2] Received ra_scalar.Reply: {}, my_send_clock: 4
+SRA-2 {"SRA-1":22, "SRA-2":38, "SRA-3":27}
+INFO [PID 2] Received ra_scalar.Request: {5 3 0}, my_send_clock: 4
+SRA-2 {"SRA-1":22, "SRA-2":39, "SRA-3":27}
+INFO [PID 2] Sending immediate CS permission to process 3
+SRA-2 {"SRA-1":24, "SRA-2":40, "SRA-3":31}
+INFO [PID 2] Received ra_scalar.Request: {5 3 0}, my_send_clock: 4
+SRA-2 {"SRA-1":24, "SRA-2":41, "SRA-3":31}
+INFO [PID 2] Sending immediate CS permission to process 3
+SRA-2 {"SRA-1":24, "SRA-2":42, "SRA-3":31}
+INFO [PID 2] Received ra_scalar.Request: {1 1 0}, my_send_clock: 4
+SRA-2 {"SRA-1":24, "SRA-2":43, "SRA-3":31}
+INFO [PID 2] Sending immediate CS permission to process 1
+SRA-2 {"SRA-1":27, "SRA-2":44, "SRA-3":37}
+INFO [PID 2] Received ra_scalar.Request: {5 3 0}, my_send_clock: 4
+SRA-2 {"SRA-1":27, "SRA-2":45, "SRA-3":37}
+INFO [PID 2] Sending immediate CS permission to process 3
+SRA-2 {"SRA-1":32, "SRA-2":46, "SRA-3":37}
+INFO [PID 2] Received ra_scalar.Request: {6 1 0}, my_send_clock: 4
+SRA-2 {"SRA-1":32, "SRA-2":47, "SRA-3":37}
+INFO [PID 2] Sending immediate CS permission to process 1
+SRA-2 {"SRA-1":33, "SRA-2":48, "SRA-3":43}
+INFO [PID 2] Received ra_scalar.Request: {7 3 0}, my_send_clock: 4
+SRA-2 {"SRA-1":33, "SRA-2":49, "SRA-3":43}
+INFO [PID 2] Sending immediate CS permission to process 3
+SRA-2 {"SRA-1":38, "SRA-2":50, "SRA-3":43}
+INFO [PID 2] Received ra_scalar.Request: {8 1 0}, my_send_clock: 4
+SRA-2 {"SRA-1":38, "SRA-2":51, "SRA-3":43}
+INFO [PID 2] Sending immediate CS permission to process 1
+SRA-2 {"SRA-1":39, "SRA-2":52, "SRA-3":49}
+INFO [PID 2] Received ra_scalar.Request: {9 3 0}, my_send_clock: 4
+SRA-2 {"SRA-1":39, "SRA-2":53, "SRA-3":49}
+INFO [PID 2] Sending immediate CS permission to process 3
+SRA-2 {"SRA-1":44, "SRA-2":54, "SRA-3":49}
+INFO [PID 2] Received ra_scalar.Request: {10 1 0}, my_send_clock: 4
+SRA-2 {"SRA-1":44, "SRA-2":55, "SRA-3":49}
+INFO [PID 2] Sending immediate CS permission to process 1
+SRA-2 {"SRA-1":45, "SRA-2":56, "SRA-3":55}
+INFO [PID 2] Received ra_scalar.Request: {11 3 0}, my_send_clock: 4
+SRA-2 {"SRA-1":45, "SRA-2":57, "SRA-3":55}
+INFO [PID 2] Sending immediate CS permission to process 3
+SRA-2 {"SRA-1":50, "SRA-2":58, "SRA-3":55}
+INFO [PID 2] Received ra_scalar.Request: {12 1 0}, my_send_clock: 4
+SRA-2 {"SRA-1":50, "SRA-2":59, "SRA-3":55}
+INFO [PID 2] Sending immediate CS permission to process 1
+SRA-2 {"SRA-1":51, "SRA-2":60, "SRA-3":61}
+INFO [PID 2] Received ra_scalar.Request: {13 3 0}, my_send_clock: 4
+SRA-2 {"SRA-1":51, "SRA-2":61, "SRA-3":61}
+INFO [PID 2] Sending immediate CS permission to process 3
+SRA-2 {"SRA-1":56, "SRA-2":62, "SRA-3":61}
+INFO [PID 2] Received ra_scalar.Request: {14 1 0}, my_send_clock: 4
+SRA-2 {"SRA-1":56, "SRA-2":63, "SRA-3":61}
+INFO [PID 2] Sending immediate CS permission to process 1
+SRA-2 {"SRA-1":57, "SRA-2":64, "SRA-3":67}
+INFO [PID 2] Received ra_scalar.Request: {15 3 0}, my_send_clock: 4
+SRA-2 {"SRA-1":57, "SRA-2":65, "SRA-3":67}
+INFO [PID 2] Sending immediate CS permission to process 3
+SRA-2 {"SRA-1":62, "SRA-2":66, "SRA-3":67}
+INFO [PID 2] Received ra_scalar.Request: {16 1 0}, my_send_clock: 4
+SRA-2 {"SRA-1":62, "SRA-2":67, "SRA-3":67}
+INFO [PID 2] Sending immediate CS permission to process 1
+SRA-2 {"SRA-1":63, "SRA-2":68, "SRA-3":73}
+INFO [PID 2] Received ra_scalar.Request: {17 3 0}, my_send_clock: 4
+SRA-2 {"SRA-1":63, "SRA-2":69, "SRA-3":73}
+INFO [PID 2] Sending immediate CS permission to process 3
+SRA-2 {"SRA-1":67, "SRA-2":70, "SRA-3":77}
+INFO [PID 2] Received ra_scalar.Request: {17 3 0}, my_send_clock: 4
+SRA-2 {"SRA-1":67, "SRA-2":71, "SRA-3":77}
+INFO [PID 2] Sending immediate CS permission to process 3
+SRA-2 {"SRA-1":70, "SRA-2":72, "SRA-3":77}
+INFO [PID 2] Received ra_scalar.Request: {18 1 0}, my_send_clock: 4
+SRA-2 {"SRA-1":70, "SRA-2":73, "SRA-3":77}
+INFO [PID 2] Sending immediate CS permission to process 1
+SRA-2 {"SRA-1":71, "SRA-2":74, "SRA-3":83}
+INFO [PID 2] Received ra_scalar.Request: {19 3 0}, my_send_clock: 4
+SRA-2 {"SRA-1":71, "SRA-2":75, "SRA-3":83}
+INFO [PID 2] Sending immediate CS permission to process 3
+SRA-2 {"SRA-1":76, "SRA-2":76, "SRA-3":83}
+INFO [PID 2] Received ra_scalar.Request: {20 1 0}, my_send_clock: 4
+SRA-2 {"SRA-1":76, "SRA-2":77, "SRA-3":83}
+INFO [PID 2] Sending immediate CS permission to process 1
+SRA-2 {"SRA-1":77, "SRA-2":78, "SRA-3":89}
+INFO [PID 2] Received ra_scalar.Request: {21 3 0}, my_send_clock: 4
+SRA-2 {"SRA-1":77, "SRA-2":79, "SRA-3":89}
+INFO [PID 2] Sending immediate CS permission to process 3
+SRA-2 {"SRA-1":82, "SRA-2":80, "SRA-3":89}
+INFO [PID 2] Received ra_scalar.Request: {22 1 0}, my_send_clock: 4
+SRA-2 {"SRA-1":82, "SRA-2":81, "SRA-3":89}
+INFO [PID 2] Sending immediate CS permission to process 1
+SRA-2 {"SRA-1":83, "SRA-2":82, "SRA-3":95}
+INFO [PID 2] Received ra_scalar.Request: {23 3 0}, my_send_clock: 4
+SRA-2 {"SRA-1":83, "SRA-2":83, "SRA-3":95}
+INFO [PID 2] Sending immediate CS permission to process 3
+SRA-2 {"SRA-1":88, "SRA-2":84, "SRA-3":95}
+INFO [PID 2] Received ra_scalar.Request: {24 1 0}, my_send_clock: 4
+SRA-2 {"SRA-1":88, "SRA-2":85, "SRA-3":95}
+INFO [PID 2] Sending immediate CS permission to process 1
+SRA-2 {"SRA-1":92, "SRA-2":86, "SRA-3":99}
+INFO [PID 2] Received ra_scalar.Request: {24 1 0}, my_send_clock: 4
+SRA-2 {"SRA-1":92, "SRA-2":87, "SRA-3":99}
+INFO [PID 2] Sending immediate CS permission to process 1
+SRA-2 {"SRA-1":96, "SRA-2":88, "SRA-3":101}
+INFO [PID 2] Received ra_scalar.Request: {24 1 0}, my_send_clock: 4
+SRA-2 {"SRA-1":96, "SRA-2":89, "SRA-3":101}
+INFO [PID 2] Sending immediate CS permission to process 1
+SRA-2 {"SRA-1":100, "SRA-2":90, "SRA-3":103}
+INFO [PID 2] Received ra_scalar.Request: {24 1 0}, my_send_clock: 4
+SRA-2 {"SRA-1":100, "SRA-2":91, "SRA-3":103}
+INFO [PID 2] Sending immediate CS permission to process 1
+SRA-2 {"SRA-1":104, "SRA-2":92, "SRA-3":105}
+INFO [PID 2] Received ra_scalar.Request: {24 1 0}, my_send_clock: 4
+SRA-2 {"SRA-1":104, "SRA-2":93, "SRA-3":105}
+INFO [PID 2] Sending immediate CS permission to process 1
+SRA-3 {"SRA-3":1}
+Initialization Complete
+SRA-3 {"SRA-3":2}
+INFO [PID 3] Sending CS request to process 1, payload: {1 3 0}
+SRA-3 {"SRA-3":3}
+INFO [PID 3] Sending CS request to process 2, payload: {1 3 0}
+SRA-3 {"SRA-1":4, "SRA-3":4}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 1
+SRA-3 {"SRA-1":4, "SRA-2":3, "SRA-3":5}
+INFO [PID 3] Received ra_scalar.Request: {1 2 0}, my_send_clock: 1
+SRA-3 {"SRA-1":4, "SRA-2":3, "SRA-3":6}
+INFO [PID 3] Sending immediate CS permission to process 2
+SRA-3 {"SRA-1":6, "SRA-2":6, "SRA-3":7}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 1
+SRA-3 {"SRA-1":6, "SRA-2":9, "SRA-3":8}
+INFO [PID 3] Received ra_scalar.Request: {2 2 0}, my_send_clock: 1
+SRA-3 {"SRA-1":6, "SRA-2":9, "SRA-3":9}
+INFO [PID 3] Sending immediate CS permission to process 2
+SRA-3 {"SRA-1":8, "SRA-2":13, "SRA-3":10}
+INFO [PID 3] Received ra_scalar.Request: {2 2 0}, my_send_clock: 1
+SRA-3 {"SRA-1":8, "SRA-2":13, "SRA-3":11}
+INFO [PID 3] Sending immediate CS permission to process 2
+SRA-3 {"SRA-1":10, "SRA-2":17, "SRA-3":12}
+INFO [PID 3] Received ra_scalar.Request: {2 2 0}, my_send_clock: 1
+SRA-3 {"SRA-1":10, "SRA-2":17, "SRA-3":13}
+INFO [PID 3] Sending immediate CS permission to process 2
+SRA-3 {"SRA-1":12, "SRA-2":21, "SRA-3":14}
+INFO [PID 3] Received ra_scalar.Request: {2 2 0}, my_send_clock: 1
+SRA-3 {"SRA-1":12, "SRA-2":21, "SRA-3":15}
+INFO [PID 3] Sending immediate CS permission to process 2
+SRA-3 {"SRA-1":14, "SRA-2":25, "SRA-3":16}
+INFO [PID 3] Received ra_scalar.Request: {2 2 0}, my_send_clock: 1
+SRA-3 {"SRA-1":14, "SRA-2":25, "SRA-3":17}
+INFO [PID 3] Sending CS request to process 1, payload: {3 3 0}
+SRA-3 {"SRA-1":14, "SRA-2":25, "SRA-3":18}
+INFO [PID 3] Sending immediate CS permission to process 2
+SRA-3 {"SRA-1":14, "SRA-2":25, "SRA-3":19}
+INFO [PID 3] Sending CS request to process 2, payload: {3 3 0}
+SRA-3 {"SRA-1":18, "SRA-2":25, "SRA-3":20}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 3
+SRA-3 {"SRA-1":18, "SRA-2":29, "SRA-3":21}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 3
+SRA-3 {"SRA-1":18, "SRA-2":31, "SRA-3":22}
+INFO [PID 3] Received ra_scalar.Request: {4 2 0}, my_send_clock: 3
+SRA-3 {"SRA-1":18, "SRA-2":31, "SRA-3":23}
+INFO [PID 3] Sending immediate CS permission to process 2
+SRA-3 {"SRA-1":20, "SRA-2":35, "SRA-3":24}
+INFO [PID 3] Received ra_scalar.Request: {4 2 0}, my_send_clock: 3
+SRA-3 {"SRA-1":20, "SRA-2":35, "SRA-3":25}
+INFO [PID 3] Sending immediate CS permission to process 2
+SRA-3 {"SRA-1":20, "SRA-2":35, "SRA-3":26}
+INFO [PID 3] Sending CS request to process 1, payload: {5 3 0}
+SRA-3 {"SRA-1":20, "SRA-2":35, "SRA-3":27}
+INFO [PID 3] Sending CS request to process 2, payload: {5 3 0}
+SRA-3 {"SRA-1":24, "SRA-2":35, "SRA-3":28}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 5
+SRA-3 {"SRA-1":24, "SRA-2":39, "SRA-3":29}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 5
+SRA-3 {"SRA-1":24, "SRA-2":39, "SRA-3":30}
+INFO [PID 3] Sending CS request to process 1, payload: {5 3 0}
+SRA-3 {"SRA-1":24, "SRA-2":39, "SRA-3":31}
+INFO [PID 3] Sending CS request to process 2, payload: {5 3 0}
+SRA-3 {"SRA-1":26, "SRA-2":39, "SRA-3":32}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 5
+SRA-3 {"SRA-1":26, "SRA-2":41, "SRA-3":33}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 5
+SRA-3 {"SRA-1":27, "SRA-2":41, "SRA-3":34}
+INFO [PID 3] Received ra_scalar.Request: {1 1 0}, my_send_clock: 5
+SRA-3 {"SRA-1":27, "SRA-2":41, "SRA-3":35}
+INFO [PID 3] Sending immediate CS permission to process 1
+SRA-3 {"SRA-1":27, "SRA-2":41, "SRA-3":36}
+INFO [PID 3] Sending CS request to process 1, payload: {5 3 0}
+SRA-3 {"SRA-1":27, "SRA-2":41, "SRA-3":37}
+INFO [PID 3] Sending CS request to process 2, payload: {5 3 0}
+SRA-3 {"SRA-1":31, "SRA-2":43, "SRA-3":38}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 5
+SRA-3 {"SRA-1":31, "SRA-2":45, "SRA-3":39}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 5
+SRA-3 {"SRA-1":33, "SRA-2":45, "SRA-3":40}
+INFO [PID 3] Received ra_scalar.Request: {6 1 0}, my_send_clock: 5
+SRA-3 {"SRA-1":33, "SRA-2":45, "SRA-3":41}
+INFO [PID 3] Sending immediate CS permission to process 1
+SRA-3 {"SRA-1":33, "SRA-2":45, "SRA-3":42}
+INFO [PID 3] Sending CS request to process 1, payload: {7 3 0}
+SRA-3 {"SRA-1":33, "SRA-2":45, "SRA-3":43}
+INFO [PID 3] Sending CS request to process 2, payload: {7 3 0}
+SRA-3 {"SRA-1":37, "SRA-2":47, "SRA-3":44}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 7
+SRA-3 {"SRA-1":37, "SRA-2":49, "SRA-3":45}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 7
+SRA-3 {"SRA-1":39, "SRA-2":49, "SRA-3":46}
+INFO [PID 3] Received ra_scalar.Request: {8 1 0}, my_send_clock: 7
+SRA-3 {"SRA-1":39, "SRA-2":49, "SRA-3":47}
+INFO [PID 3] Sending immediate CS permission to process 1
+SRA-3 {"SRA-1":39, "SRA-2":49, "SRA-3":48}
+INFO [PID 3] Sending CS request to process 1, payload: {9 3 0}
+SRA-3 {"SRA-1":39, "SRA-2":49, "SRA-3":49}
+INFO [PID 3] Sending CS request to process 2, payload: {9 3 0}
+SRA-3 {"SRA-1":43, "SRA-2":51, "SRA-3":50}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 9
+SRA-3 {"SRA-1":43, "SRA-2":53, "SRA-3":51}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 9
+SRA-3 {"SRA-1":45, "SRA-2":53, "SRA-3":52}
+INFO [PID 3] Received ra_scalar.Request: {10 1 0}, my_send_clock: 9
+SRA-3 {"SRA-1":45, "SRA-2":53, "SRA-3":53}
+INFO [PID 3] Sending immediate CS permission to process 1
+SRA-3 {"SRA-1":45, "SRA-2":53, "SRA-3":54}
+INFO [PID 3] Sending CS request to process 1, payload: {11 3 0}
+SRA-3 {"SRA-1":45, "SRA-2":53, "SRA-3":55}
+INFO [PID 3] Sending CS request to process 2, payload: {11 3 0}
+SRA-3 {"SRA-1":49, "SRA-2":55, "SRA-3":56}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 11
+SRA-3 {"SRA-1":49, "SRA-2":57, "SRA-3":57}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 11
+SRA-3 {"SRA-1":51, "SRA-2":57, "SRA-3":58}
+INFO [PID 3] Received ra_scalar.Request: {12 1 0}, my_send_clock: 11
+SRA-3 {"SRA-1":51, "SRA-2":57, "SRA-3":59}
+INFO [PID 3] Sending immediate CS permission to process 1
+SRA-3 {"SRA-1":51, "SRA-2":57, "SRA-3":60}
+INFO [PID 3] Sending CS request to process 1, payload: {13 3 0}
+SRA-3 {"SRA-1":51, "SRA-2":57, "SRA-3":61}
+INFO [PID 3] Sending CS request to process 2, payload: {13 3 0}
+SRA-3 {"SRA-1":55, "SRA-2":59, "SRA-3":62}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 13
+SRA-3 {"SRA-1":55, "SRA-2":61, "SRA-3":63}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 13
+SRA-3 {"SRA-1":57, "SRA-2":61, "SRA-3":64}
+INFO [PID 3] Received ra_scalar.Request: {14 1 0}, my_send_clock: 13
+SRA-3 {"SRA-1":57, "SRA-2":61, "SRA-3":65}
+INFO [PID 3] Sending immediate CS permission to process 1
+SRA-3 {"SRA-1":57, "SRA-2":61, "SRA-3":66}
+INFO [PID 3] Sending CS request to process 1, payload: {15 3 0}
+SRA-3 {"SRA-1":57, "SRA-2":61, "SRA-3":67}
+INFO [PID 3] Sending CS request to process 2, payload: {15 3 0}
+SRA-3 {"SRA-1":61, "SRA-2":63, "SRA-3":68}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 15
+SRA-3 {"SRA-1":61, "SRA-2":65, "SRA-3":69}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 15
+SRA-3 {"SRA-1":63, "SRA-2":65, "SRA-3":70}
+INFO [PID 3] Received ra_scalar.Request: {16 1 0}, my_send_clock: 15
+SRA-3 {"SRA-1":63, "SRA-2":65, "SRA-3":71}
+INFO [PID 3] Sending immediate CS permission to process 1
+SRA-3 {"SRA-1":63, "SRA-2":65, "SRA-3":72}
+INFO [PID 3] Sending CS request to process 1, payload: {17 3 0}
+SRA-3 {"SRA-1":63, "SRA-2":65, "SRA-3":73}
+INFO [PID 3] Sending CS request to process 2, payload: {17 3 0}
+SRA-3 {"SRA-1":67, "SRA-2":67, "SRA-3":74}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 17
+SRA-3 {"SRA-1":67, "SRA-2":69, "SRA-3":75}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 17
+SRA-3 {"SRA-1":67, "SRA-2":69, "SRA-3":76}
+INFO [PID 3] Sending CS request to process 1, payload: {17 3 0}
+SRA-3 {"SRA-1":67, "SRA-2":69, "SRA-3":77}
+INFO [PID 3] Sending CS request to process 2, payload: {17 3 0}
+SRA-3 {"SRA-1":69, "SRA-2":69, "SRA-3":78}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 17
+SRA-3 {"SRA-1":69, "SRA-2":71, "SRA-3":79}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 17
+SRA-3 {"SRA-1":71, "SRA-2":71, "SRA-3":80}
+INFO [PID 3] Received ra_scalar.Request: {18 1 0}, my_send_clock: 17
+SRA-3 {"SRA-1":71, "SRA-2":71, "SRA-3":81}
+INFO [PID 3] Sending immediate CS permission to process 1
+SRA-3 {"SRA-1":71, "SRA-2":71, "SRA-3":82}
+INFO [PID 3] Sending CS request to process 1, payload: {19 3 0}
+SRA-3 {"SRA-1":71, "SRA-2":71, "SRA-3":83}
+INFO [PID 3] Sending CS request to process 2, payload: {19 3 0}
+SRA-3 {"SRA-1":75, "SRA-2":73, "SRA-3":84}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 19
+SRA-3 {"SRA-1":75, "SRA-2":75, "SRA-3":85}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 19
+SRA-3 {"SRA-1":77, "SRA-2":75, "SRA-3":86}
+INFO [PID 3] Received ra_scalar.Request: {20 1 0}, my_send_clock: 19
+SRA-3 {"SRA-1":77, "SRA-2":75, "SRA-3":87}
+INFO [PID 3] Sending immediate CS permission to process 1
+SRA-3 {"SRA-1":77, "SRA-2":75, "SRA-3":88}
+INFO [PID 3] Sending CS request to process 1, payload: {21 3 0}
+SRA-3 {"SRA-1":77, "SRA-2":75, "SRA-3":89}
+INFO [PID 3] Sending CS request to process 2, payload: {21 3 0}
+SRA-3 {"SRA-1":81, "SRA-2":77, "SRA-3":90}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 21
+SRA-3 {"SRA-1":81, "SRA-2":79, "SRA-3":91}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 21
+SRA-3 {"SRA-1":83, "SRA-2":79, "SRA-3":92}
+INFO [PID 3] Received ra_scalar.Request: {22 1 0}, my_send_clock: 21
+SRA-3 {"SRA-1":83, "SRA-2":79, "SRA-3":93}
+INFO [PID 3] Sending immediate CS permission to process 1
+SRA-3 {"SRA-1":83, "SRA-2":79, "SRA-3":94}
+INFO [PID 3] Sending CS request to process 1, payload: {23 3 0}
+SRA-3 {"SRA-1":83, "SRA-2":79, "SRA-3":95}
+INFO [PID 3] Sending CS request to process 2, payload: {23 3 0}
+SRA-3 {"SRA-1":87, "SRA-2":81, "SRA-3":96}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 23
+SRA-3 {"SRA-1":87, "SRA-2":83, "SRA-3":97}
+INFO [PID 3] Received ra_scalar.Reply: {}, my_send_clock: 23
+SRA-3 {"SRA-1":89, "SRA-2":83, "SRA-3":98}
+INFO [PID 3] Received ra_scalar.Request: {24 1 0}, my_send_clock: 23
+SRA-3 {"SRA-1":89, "SRA-2":83, "SRA-3":99}
+INFO [PID 3] Sending immediate CS permission to process 1
+SRA-3 {"SRA-1":93, "SRA-2":85, "SRA-3":100}
+INFO [PID 3] Received ra_scalar.Request: {24 1 0}, my_send_clock: 23
+SRA-3 {"SRA-1":93, "SRA-2":85, "SRA-3":101}
+INFO [PID 3] Sending immediate CS permission to process 1
+SRA-3 {"SRA-1":97, "SRA-2":87, "SRA-3":102}
+INFO [PID 3] Received ra_scalar.Request: {24 1 0}, my_send_clock: 23
+SRA-3 {"SRA-1":97, "SRA-2":87, "SRA-3":103}
+INFO [PID 3] Sending immediate CS permission to process 1
+SRA-3 {"SRA-1":101, "SRA-2":89, "SRA-3":104}
+INFO [PID 3] Received ra_scalar.Request: {24 1 0}, my_send_clock: 23
+SRA-3 {"SRA-1":101, "SRA-2":89, "SRA-3":105}
+INFO [PID 3] Sending immediate CS permission to process 1
+SRA-3 {"SRA-1":105, "SRA-2":91, "SRA-3":106}
+INFO [PID 3] Received ra_scalar.Request: {24 1 0}, my_send_clock: 23
+SRA-3 {"SRA-1":105, "SRA-2":91, "SRA-3":107}
+INFO [PID 3] Sending immediate CS permission to process 1
