@@ -25,10 +25,10 @@ import (
  *
  *	@Returns:	A string containing the content of the file, or an empty string if the file couldn't be read.
  */
-func LeerFichero(shared_RW_file string, PID int) string {
-	file, err := os.Open(shared_RW_file)
+func LeerFichero(sharedRWFile string, PID int) string {
+	file, err := os.Open(sharedRWFile)
 	if err != nil {
-		utils.LogWithColor(utils.Red, fmt.Sprintf("[PID %v] File \"%s\" not created yet, could not read anything\n", PID, shared_RW_file))
+		utils.LogWithColor(utils.Red, fmt.Sprintf("[PID %v] File \"%s\" not created yet, could not read anything\n", PID, sharedRWFile))
 		return ""
 	}
 	defer file.Close()

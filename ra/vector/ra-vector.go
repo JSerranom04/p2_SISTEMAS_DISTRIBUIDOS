@@ -158,7 +158,7 @@ func (ra *VRASharedDB) hasEarlierOrEqualSendVClock(receivedVClock []int) (bool, 
 			weHaveLaterClock = true
 		}
 	}
-	comparableAndNotEqual := !(weHaveEarlierClock == weHaveLaterClock)
+	comparableAndNotEqual := (weHaveEarlierClock != weHaveLaterClock)
 	return comparableAndNotEqual, comparableAndNotEqual && weHaveEarlierClock
 }
 

@@ -4,7 +4,7 @@
  * Date:        06-10-2024
 *******************************************************************************/
 
-package readerwriter
+package readerwritter
 
 import (
 	"bufio"
