@@ -5,98 +5,117 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"os/exec"
+	"strconv"
 	"strings"
-
-	"github.com/DistributedClocks/GoVector/govec"
 )
 
 func main() {
-	sharedRWFile := "shared_test_file.txt"
-	endpointsFile := "./data/endpoints/endpoints0.txt"
-	// Crear el archivo compartido
-	os.Create(sharedRWFile)
-	defer os.Remove(sharedRWFile)
+    if len(os.Args) < 2 {
+        fmt.Println("Usage: go run verifier.go <number_of_processes>")
+        os.Exit(1)
+    }
 
-	// Configuración de GoVector
-	loggerConfig := govec.GetDefaultConfig()
-	goLogger := govec.InitGoVector("TestLectoresEscritores", "logs/test_logs.log", loggerConfig)
-	logOptions := govec.GetDefaultLogOptions()
+    numProcesses, err := strconv.Atoi(os.Args[1])
+    if err != nil || numProcesses <= 0 {
+        fmt.Println("Invalid number of processes.")
+        os.Exit(1)
+    }
 
-	// Leer los endpoints desde el archivo
-	endpoints, err := leerEndpoints(endpointsFile)
-	if err != nil {
-		log.Fatalf("Error al leer el archivo de endpoints: %v", err)
-	}
+    logFile := "salida.txt"
 
-	// Inicializar canales de finalización
-	finLectores := make(chan bool)
-	finEscritores := make(chan bool)
+    // Open the log file for reading
+    file, err := os.Open(logFile)
+    if err != nil {
+        log.Fatalf("Error opening log file: %v", err)
+    }
+    defer file.Close()
 
-	// Ejecutar lectores y escritores en las máquinas remotas
-	for i, endpoint := range endpoints {
-		if i < 3 {
-			// Ejecutar lectores
-			go func(pid int, endpoint string) {
-				goLogger.LogLocalEvent(fmt.Sprintf("Lector %d iniciando", pid), logOptions)
-				executeRemoteCommand(endpoint, fmt.Sprintf("cd /path/to/project && go run cmd/lector/lector.go %d data/endpoints/endpoints0.txt shared_test_file logs/lector_%d.log", pid, pid))
-				finLectores <- true
-			}(i+1, endpoint)
-		} else {
-			// Ejecutar escritores
-			go func(pid int, endpoint string) {
-				goLogger.LogLocalEvent(fmt.Sprintf("Escritor %d iniciando", pid), logOptions)
-				executeRemoteCommand(endpoint, fmt.Sprintf("cd /path/to/project && go run cmd/escritor/escritor.go %d data/endpoints/endpoints0.txt shared_test_file logs/escritor_%d.log data/content/contentRFile.txt", pid, pid))
-				finEscritores <- true
-			}(i+1, endpoint)
-		}
-	}
+    // Variables to track the critical section entries
+    inCriticalSection := make(map[int]bool) // Tracks if a process is in CS
+    csEntries := make([]int, 0)             // Keeps track of the order of CS entries
 
-	// Esperar a que todos los procesos terminen
-	for i := 0; i < 3; i++ {
-		<-finLectores
-	}
-	for i := 0; i < 2; i++ {
-		<-finEscritores
-	}
+    scanner := bufio.NewScanner(file)
+    lineNumber := 0
+    for scanner.Scan() {
+        line := strings.TrimSpace(scanner.Text())
+        lineNumber++
 
-	goLogger.LogLocalEvent("Finalización de la prueba de lectores y escritores distribuidos", logOptions)
+        if strings.Contains(line, "Entering critical section") {
+            pid := extractPID(line)
+            vectorClock := extractVectorClock(line)
+            if pid >= 0 {
+                // Check if another process is already in CS
+                for otherPID, inCS := range inCriticalSection {
+                    if inCS && otherPID != pid {
+                        log.Printf("Error at line %d: Processes %d and %d are in the critical section simultaneously.", lineNumber, pid, otherPID)
+                        fmt.Println("Execution failed: Mutual exclusion violated.")
+                        os.Exit(1)
+                    }
+                }
+                inCriticalSection[pid] = true
+                csEntries = append(csEntries, pid)
+                log.Printf("Process %d entered CS at vector clock %v", pid, vectorClock)
+            }
+        } else if strings.Contains(line, "Exiting critical section") {
+            pid := extractPID(line)
+            vectorClock := extractVectorClock(line)
+            if pid >= 0 {
+                if !inCriticalSection[pid] {
+                    log.Printf("Error at line %d: Process %d is exiting CS but was not recorded as being in CS.", lineNumber, pid)
+                    fmt.Println("Execution failed: Process state inconsistency.")
+                    os.Exit(1)
+                }
+                inCriticalSection[pid] = false
+                log.Printf("Process %d exited CS at vector clock %v", pid, vectorClock)
+            }
+        }
+        // Ignore other messages
+    }
+
+    if err := scanner.Err(); err != nil {
+        log.Fatalf("Error reading log file: %v", err)
+    }
+
+    // Final check to ensure no process is left in CS
+    for pid, inCS := range inCriticalSection {
+        if inCS {
+            log.Printf("Error: Process %d is still in the critical section at the end of execution.", pid)
+            fmt.Println("Execution failed: Some processes did not exit the critical section.")
+            os.Exit(1)
+        }
+    }
+
+    // If we reach here, all checks passed
+    fmt.Println("Execution successful: All checks passed.")
 }
 
-// leerEndpoints lee los endpoints del archivo de texto y devuelve un slice con las direcciones IP y puertos.
-func leerEndpoints(filename string) ([]string, error) {
-	file, err := os.Open(filename)
-	if err != nil {
-		return nil, err
-	}
-	defer file.Close()
-
-	var endpoints []string
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line := strings.TrimSpace(scanner.Text())
-		if line != "" {
-			endpoints = append(endpoints, line)
-		}
-	}
-	if err := scanner.Err(); err != nil {
-		return nil, err
-	}
-
-	return endpoints, nil
+// extractPID extracts the PID from a log line
+func extractPID(line string) int {
+    var pid int
+    _, err := fmt.Sscanf(line, "[PID %d]", &pid)
+    if err != nil {
+        return -1 // Error in extraction
+    }
+    return pid
 }
 
-// executeRemoteCommand se conecta a la máquina remota mediante SSH y ejecuta el comando proporcionado.
-func executeRemoteCommand(endpoint string, command string) {
-	// Construir el comando SSH
-	sshCommand := fmt.Sprintf("ssh %s %s", endpoint, command)
+// extractVectorClock extracts the vector clock from a log line
+func extractVectorClock(line string) []int {
+    start := strings.Index(line, "{[")
+    end := strings.Index(line, "]}")
+    if start != -1 && end != -1 {
+        clockStr := line[start+2 : end]
+        return parseClockString(clockStr)
+    }
+    return nil
+}
 
-	// Ejecutar el comando
-	cmd := exec.Command("bash", "-c", sshCommand)
-	output, err := cmd.CombinedOutput()
-	if err != nil {
-		log.Printf("Error al ejecutar el comando en %s: %v\nSalida: %s", endpoint, err, string(output))
-	} else {
-		log.Printf("Comando ejecutado correctamente en %s\nSalida: %s", endpoint, string(output))
-	}
+// parseClockString converts a clock string into a slice of integers
+func parseClockString(clockStr string) []int {
+    parts := strings.Fields(clockStr)
+    clock := make([]int, len(parts))
+    for i, part := range parts {
+        fmt.Sscanf(part, "%d", &clock[i])
+    }
+    return clock
 }
