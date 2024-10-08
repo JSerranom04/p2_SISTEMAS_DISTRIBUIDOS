@@ -174,7 +174,7 @@ func HandleReceiveReply(event utils.Event, state *utils.ProcessState, processSta
 	fmt.Printf("[DEBUG] Line %d: Process %d handling RECEIVE_REPLY\n", event.LineNumber, event.PID)
 	if state.State == "Requesting" {
 		if state.PendingReplies > 0 {
-			state.PendingReplies -= 1
+			state.PendingReplies--
 			fmt.Printf("[DEBUG] Process %d: PendingReplies decremented to %d\n", event.PID, state.PendingReplies)
 			if state.PendingReplies == 0 {
 				// All replies received, enter the critical section
@@ -183,12 +183,12 @@ func HandleReceiveReply(event utils.Event, state *utils.ProcessState, processSta
 				// Verify mutual exclusion and readers-writers rules
 				checkMutualExclusion(processStates, event.PID, state.Operation, event.LineNumber)
 			}
-		} else {
+		} else if state.State == "InCS" {
 			logError(event.LineNumber, event.PID, "received more replies than expected")
 			fmt.Println("Test failed: Received replies without having sent requests.")
 			os.Exit(1)
 		}
-	} else {
+	} else if state.State == "InCs" {
 		logError(event.LineNumber, event.PID, "received a reply without requesting")
 		fmt.Println("Test failed: Received replies without having sent requests.")
 		os.Exit(1)

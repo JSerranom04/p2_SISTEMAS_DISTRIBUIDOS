@@ -1,8 +1,0 @@
-TestLectoresEscritores {"TestLectoresEscritores":1}
-Initialization Complete
-TestLectoresEscritores {"TestLectoresEscritores":2}
-INFO Lector 3 iniciando
-TestLectoresEscritores {"TestLectoresEscritores":3}
-INFO Lector 2 iniciando
-TestLectoresEscritores {"TestLectoresEscritores":4}
-INFO Lector 1 iniciando

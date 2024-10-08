@@ -259,6 +259,6 @@ func (ra *VRASharedDB) PostProtocol() {
  *	@Returns:	None.
  */
 func (ra *VRASharedDB) Stop() {
-	ra.ms.Stop()
 	ra.done <- true
+	ra.ms.Stop()
 }

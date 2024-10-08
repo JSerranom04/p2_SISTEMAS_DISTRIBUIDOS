@@ -1,0 +1,24 @@
+Es posible observar la siguiente secuencia de eventos fatal
+en la implementación del algoritmo de RA con relojes vectoriales:
+
+1.	Evento 1: El proceso con PID  N  envía una petición al proceso con PID  N-2.
+    El proceso con PID  N-2  no está solicitando la sección crítica,
+    por lo que le da el "OK" al proceso con PID  N.
+2.	Evento 2: El proceso con PID  N-2  envía una petición al proceso con PID  N.
+    El proceso con PID  N  no le da permiso porque  R_e(N-2) >= R_e(N),
+    donde  R_e  representa el reloj lógico de envío de cada proceso.
+3.	Evento 3: El proceso con PID  N-1  envía una petición al proceso con PID  N-2.
+    Los relojes lógicos de envío de  N-1  y  N-2  son concurrentes, es decir, 
+    R_e(N-1) || R_e(N-2). Por lo tanto, el proceso con PID N-2 
+    no le da permiso al proceso con PID  N-1.
+4.	Evento 4: El proceso con PID  N  envía una petición al proceso con PID  N-1.
+    Los relojes lógicos de envío de  N  y  N-1  son concurrentes, es decir,  R_e(N) || R_e(N-1).
+    Por lo tanto, el proceso con PID  N-1  no le da permiso al proceso con PID  N.
+
+Conclusión: Ninguno de los tres procesos obtendrá permiso de los otros dos.
+Solo recibirá permiso de uno de los otros dos procesos, lo que resultará en un bloqueo total.
+
+Se observa que en la implementación con relojes escalares, una situación así no puede
+llevar a bloqueo total ya que siempre va a haber un proceso entre los 3 al que los otros 2
+van a tener que dar permiso, que es EL QUE TENGA EL MENOR PID ENTRE LOS QUE TENGAN
+EL MENOR RELOJ_ENVÍO ENTRE TODOS.

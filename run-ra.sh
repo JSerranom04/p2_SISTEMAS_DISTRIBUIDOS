@@ -5,7 +5,7 @@ IFS=":"
 
 contentRFile="data/content/contentRFile.txt"
 sharedRWFilePrefix="data/content/sharedRWFile"
-endpointsFile="data/endpoints/endpoints1.txt"
+endpointsFile="data/endpoints/endpoints0.txt"
 
 readerArgs="${endpointsFile} ${sharedRWFilePrefix}"
 writerArgs="${readerArgs} ${contentRFile}"

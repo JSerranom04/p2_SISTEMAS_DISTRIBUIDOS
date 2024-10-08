@@ -102,4 +102,5 @@ func main() {
 
 	log.Printf("[PID %v] Finished write operations\n", PID)
 	<-endSigChan
+	log.Printf("[PID %v], FINISHING", PID)
 }

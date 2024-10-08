@@ -1,206 +1,133 @@
-package main
+/*******************************************************************************
+ * File:		utils/utils.go
+ * Authors:		Juan José Serrano Mora, 870282; José Miguel Quílez Vergara, 873499
+ * Date:		06-10-2024
+*******************************************************************************/
+
+package utils
 
 import (
 	"bufio"
+	"bytes"
+	"encoding/gob"
 	"fmt"
 	"log"
+	"math/rand"
 	"os"
-	"regexp"
+	"os/signal"
 	"strconv"
+	"strings"
+	"syscall"
+	"time"
 )
 
-// Estructura para representar eventos relevantes en los logs
-type Event struct {
-	LineNumber  int
-	PID         int
-	Operation   string // "READ" o "WRITE"
-	Action      string // "REQUEST", "REPLY", "SEND_REQUEST", "RECEIVE_REQUEST", "SEND_REPLY", "RECEIVE_REPLY", "EXIT"
-	TargetPID   int    // PID del proceso destino u origen según corresponda
-	VectorClock []int
+type OpType int
+
+const (
+	READ OpType = iota
+	WRITE
+)
+
+const (
+	MAX_BUFFERED_REQUESTS = 100
+)
+
+/*
+ *	@Pre:		localOpType and remoteOpType are valid OpType values.
+ *	@Post: 		Determines if the operations are mutually exclusive.
+ *
+ *	@Returns:	true if the operations are mutually exclusive, false otherwise.
+ */
+func ExcludeOps(localOpType, remoteOpType OpType) bool {
+	return localOpType == WRITE || remoteOpType == WRITE
 }
 
-// Estructura para rastrear el estado de cada proceso
-type ProcessState struct {
-	InCriticalSection bool
-	Operation         string // "READ" o "WRITE"
-	PendingReplies    int    // Número de respuestas pendientes
+/*
+ *	@Pre:		args is a slice of command-line arguments, execFormat is a string describing the expected format,
+ *				argsNum is the expected number of arguments.
+ *	@Post: 		Parses and validates command-line arguments.
+ *
+ *	@Returns:	PID (int), endpointsFile (string), sharedRWFile (string), logsFile (string), and a channel for OS signals.
+ */
+func ParseAndCheckArgs(args []string, execFormat string, argsNum int) (int, string, string, string, chan os.Signal) {
+	var PID int
+	var err error
+	if len(args) < argsNum {
+		log.Fatalf("Error: arguments missing, execution format: %s\n", execFormat)
+	} else if PID, err = strconv.Atoi(args[1]); err != nil {
+		log.Fatal("Error: the provided process line number cannot be parsed to an int\n")
+	}
+
+	endSigChan := make(chan os.Signal, 1)
+	signal.Notify(endSigChan, syscall.SIGINT, syscall.SIGTERM)
+	log.SetFlags(log.Lshortfile | log.Lmicroseconds)
+
+	endpointsFile := args[2]
+	sharedRWFile := args[3]
+	logsFile := fmt.Sprintf("logs/logs%v", PID)
+
+	return PID, endpointsFile, sharedRWFile, logsFile, endSigChan
 }
 
-// Función principal
-func main() {
-	// Verificar que se ha proporcionado el número correcto de argumentos
-	if len(os.Args) != 2 {
-		fmt.Println("Uso: go run main.go <numero_procesos>")
-		os.Exit(1)
+func GetRandomSleepDuration(minDelayMs int, maxDelayMs int) time.Duration {
+	if minDelayMs > maxDelayMs {
+		panic("minDelayMs should not be greater than maxDelayMs")
 	}
+	delayMs := rand.Intn(maxDelayMs-minDelayMs+1) + minDelayMs
+	return time.Duration(delayMs) * time.Millisecond
+}
 
-	// Número total de procesos en el sistema
-	numProcesses, err := strconv.Atoi(os.Args[1])
+func CountNonEmptyLines(filename string) (int, error) {
+	file, err := os.Open(filename)
 	if err != nil {
-		fmt.Println("El argumento debe ser un número entero.")
-		os.Exit(1)
-	}
-
-	// Archivo de logs generado por los procesos
-	logFile := "salida.txt"
-
-	// Abrir el archivo de logs
-	file, err := os.Open(logFile)
-	if err != nil {
-		log.Fatalf("Error al abrir el archivo de logs: %v", err)
+		return 0, err
 	}
 	defer file.Close()
 
-	// Mapas para rastrear el estado de los procesos
-	processStates := make(map[int]*ProcessState)
-	events := []Event{}
-
-	// Inicializar el estado de todos los procesos esperados
-	for pid := 1; pid <= numProcesses; pid++ {
-		processStates[pid] = &ProcessState{
-			InCriticalSection: false,
-			Operation:         "", // Desconocido al inicio
-			PendingReplies:    0,
-		}
-	}
-
 	scanner := bufio.NewScanner(file)
-	lineNumber := 0
+	count := 0
 	for scanner.Scan() {
-		line := scanner.Text()
-		lineNumber++
-		//log.Printf("%s\n", line)
-
-		// Parsear la línea para extraer información relevante
-		event, err := parseLogLine(line, lineNumber, numProcesses)
-		if err != nil {
-			// Si la línea no es relevante, se ignora
-			continue
-		}
-
-		events = append(events, event)
-
-		state := processStates[event.PID]
-
-		switch event.Action {
-		case "SEND_REQUEST":
-			// Cuando un proceso envía una solicitud, incrementa el contador de respuestas pendientes
-			if state.Operation == "" {
-				state.Operation = "WRITE" // Asumimos que es escritura si no se especifica
-			}
-			state.PendingReplies++
-		case "RECEIVE_REPLY":
-			// Cuando un proceso recibe una confirmación, decrementa el contador de respuestas pendientes
-			if state.PendingReplies > 0 {
-				state.PendingReplies--
-			} else {
-				log.Printf("Error en la línea %d: Proceso %d recibió una respuesta inesperada.", lineNumber, event.PID)
-				fmt.Println("Test fallido: Respuestas recibidas sin haber enviado solicitudes.")
-				return
-			}
-
-			// Si ya recibió todas las confirmaciones, entra en la sección crítica
-			if state.PendingReplies == 0 && !state.InCriticalSection {
-				// Verificar reglas de acceso a la sección crítica
-				if state.Operation == "WRITE" {
-					// Un escritor no puede entrar si hay otro proceso en la sección crítica
-					for pid, ps := range processStates {
-						if ps.InCriticalSection && pid != event.PID {
-							logViolation(lineNumber, event.PID, pid, "Escritor entrando cuando otro proceso está en sección crítica")
-							return
-						}
-					}
-				} else if state.Operation == "READ" {
-					// Un lector no puede entrar si hay un escritor en la sección crítica
-					for pid, ps := range processStates {
-						if ps.InCriticalSection && ps.Operation == "WRITE" && pid != event.PID {
-							logViolation(lineNumber, event.PID, pid, "Lector entrando cuando un escritor está en sección crítica")
-							return
-						}
-					}
-				}
-				state.InCriticalSection = true
-				// Opcional: puedes registrar que el proceso entró en la sección crítica
-				// log.Printf("[PID %d] Entra en la sección crítica", event.PID)
-			}
-
-		case "EXIT":
-			if !state.InCriticalSection {
-				log.Printf("Error en la línea %d: Proceso %d intenta salir de la sección crítica sin haber entrado.", lineNumber, event.PID)
-				fmt.Println("Test fallido: Estado inconsistente del proceso.")
-				return
-			}
-			state.InCriticalSection = false
-			state.Operation = ""
-			// Opcional: puedes registrar que el proceso salió de la sección crítica
-			// log.Printf("[PID %d] Sale de la sección crítica", event.PID)
-
-			// Puedes manejar otros casos si es necesario
+		if strings.TrimSpace(scanner.Text()) != "" {
+			count++
 		}
 	}
 
 	if err := scanner.Err(); err != nil {
-		log.Fatalf("Error al leer el archivo de logs: %v", err)
+		return 0, err
 	}
 
-	// Verificar que ningún proceso quedó en la sección crítica
-	for pid, state := range processStates {
-		if state.InCriticalSection {
-			log.Printf("Error: El proceso %d quedó en la sección crítica al finalizar los logs.", pid)
-			fmt.Println("Test fallido: Procesos quedaron en la sección crítica.")
-			return
-		}
-	}
-
-	fmt.Println("Test exitoso: Todas las verificaciones pasaron correctamente.")
+	return count, nil
 }
 
-// Función para parsear una línea del log y extraer un evento
-func parseLogLine(line string, lineNumber int, numProcesses int) (Event, error) {
-	// Expresiones regulares para detectar eventos
-	sendRequestRegex := regexp.MustCompile(`\[PID (\d+)\] Sending CS request to process (\d+), payload: .*`)
-	receiveReplyRegex := regexp.MustCompile(`\[PID (\d+)\] Received ra_vector\.VReply: .*`)
-	exitCSRegex := regexp.MustCompile(`\[PID (\d+)\] Exiting critical section .*`)
-
-	if matches := sendRequestRegex.FindStringSubmatch(line); matches != nil {
-		pid, _ := strconv.Atoi(matches[1])
-		// targetPID, _ := strconv.Atoi(matches[2]) // Ya no es necesario
-		return Event{
-			LineNumber: lineNumber,
-			PID:        pid,
-			Action:     "SEND_REQUEST",
-			// TargetPID:  targetPID, // No necesitamos TargetPID aquí
-		}, nil
-	} else if matches := receiveReplyRegex.FindStringSubmatch(line); matches != nil {
-		pid, _ := strconv.Atoi(matches[1])
-		// No conocemos TargetPID aquí y ya no es necesario
-		return Event{
-			LineNumber: lineNumber,
-			PID:        pid,
-			Action:     "RECEIVE_REPLY",
-		}, nil
-	} else if matches := exitCSRegex.FindStringSubmatch(line); matches != nil {
-		pid, _ := strconv.Atoi(matches[1])
-		return Event{
-			LineNumber: lineNumber,
-			PID:        pid,
-			Action:     "EXIT",
-		}, nil
-	}
-
-	return Event{}, fmt.Errorf("Línea no relevante")
+// CustomEncoder encodes a given data structure into a byte slice
+func CustomEncoder(data interface{}) ([]byte, error) {
+	var buf bytes.Buffer
+	enc := gob.NewEncoder(&buf)
+	err := enc.Encode(data)
+	return buf.Bytes(), err
 }
 
-// Función para registrar una violación y mostrar un mensaje de error
-func logViolation(lineNumber, pid1, pid2 int, message string) {
-	log.Printf("Violación en la línea %d: %s. Procesos involucrados: %d y %d.", lineNumber, message, pid1, pid2)
-	fmt.Printf("Test fallido: %s\n", message)
+// CustomDecoder decodes a byte slice back into a data structure
+func CustomDecoder(src []byte, dest interface{}) error {
+	// log.Println("DECOOOODINNNNG")
+	reader := bytes.NewReader(src)
+	decoder := gob.NewDecoder(reader)
+	return decoder.Decode(dest)
 }
 
-// Función auxiliar para obtener el máximo entre dos enteros
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
+const (
+	Reset    = "\033[0m"
+	Red      = "\033[31m"
+	Green    = "\033[32m"
+	Yellow   = "\033[33m"
+	Blue     = "\033[34m"
+	Orange   = "\033[38;2;255;165;0m"
+	Pink     = "\033[38;5;13m"
+	BrCyan   = "\033[96m"
+	BgLBlue  = "\033[48;5;81m"
+	BgOrange = "\033[48;5;208m"
+)
+
+func LogWithColor(color, message string) {
+	fmt.Println(color + message + Reset)
 }
