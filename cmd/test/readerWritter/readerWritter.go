@@ -4,7 +4,7 @@
  * Date:        06-10-2024
 *******************************************************************************/
 
-package readerwriter
+package readerwritter
 
 import (
 	"bufio"
@@ -59,11 +59,11 @@ func EscribirFichero(sharedRWFile string, fragmento string, PID int) {
 	}
 }
 
-func EjecutarLector(PID int, endpoints_file string, shared_RW_file_pref string, logs_file string) {
-	sharedRWFile := shared_RW_file_pref + strconv.Itoa(PID) + ".txt"
+func EjecutarLector(PID int, endpointsFile string, sharedRWFilePref string, logsFile string) {
+	sharedRWFile := sharedRWFilePref + strconv.Itoa(PID) + ".txt"
 	reqChan := make(chan Vra.VRequest)
 
-	ra := Vra.New(PID, endpoints_file, logs_file, utils.READ, reqChan)
+	ra := Vra.New(PID, endpointsFile, logsFile, utils.READ, reqChan)
 	defer ra.Stop()
 
 	for i := 0; i < 8; i++ {
@@ -82,14 +82,14 @@ func EjecutarLector(PID int, endpoints_file string, shared_RW_file_pref string, 
 	log.Printf("[PID %v] Finished read operations\n", PID)
 }
 
-func EjecutarEscritor(PID int, endpoints_file string, shared_RW_file_pref string, logs_file string, contentRFile string) {
+func EjecutarEscritor(PID int, endpointsFile string, sharedRWFilePref string, logsFile string, contentRFile string) {
 	reqChan := make(chan Vra.VRequest)
-	totalPeers, _ := utils.CountNonEmptyLines(endpoints_file)
+	totalPeers, _ := utils.CountNonEmptyLines(endpointsFile)
 	lines_file_reader, _ := os.Open(contentRFile)
 	defer lines_file_reader.Close()
 	scanner := bufio.NewScanner(lines_file_reader)
 
-	ra := Vra.New(PID, endpoints_file, logs_file, utils.WRITE, reqChan)
+	ra := Vra.New(PID, endpointsFile, logsFile, utils.WRITE, reqChan)
 	defer ra.Stop()
 
 	sleepTime := utils.GetRandomSleepDuration(2, 100)
@@ -102,11 +102,11 @@ func EjecutarEscritor(PID int, endpoints_file string, shared_RW_file_pref string
 
 		ra.PreProtocol()
 		for i := 1; i <= totalPeers; i++ {
-			EscribirFichero(shared_RW_file_pref+strconv.Itoa(i)+".txt", line, PID)
+			EscribirFichero(sharedRWFilePref+strconv.Itoa(i)+".txt", line, PID)
 		}
 		ra.PostProtocol()
 
-		utils.LogWithColor(utils.Pink, fmt.Sprintf("\n[PID %v] Content written to files \"%s\" (1, 2, ...):", PID, shared_RW_file_pref))
+		utils.LogWithColor(utils.Pink, fmt.Sprintf("\n[PID %v] Content written to files \"%s\" (1, 2, ...):", PID, sharedRWFilePref))
 		utils.LogWithColor(utils.Pink, line+"\n")
 	}
 
